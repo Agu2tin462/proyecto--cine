@@ -2,14 +2,14 @@
 {% load static %}
 {% load colaborador_tags %}
 
-<title>{% block title %}Eliminación de artículos{%endblock %}</title>
+<title>{% block title %}Eliminación de Reseña{%endblock %}</title>
 
 {% block contenido %}
 {% if user.is_superuser or request.user|has_group:"Colaborador"  %}
 <div class="container py-5">
     <div class="col-md-6 m-auto text-center">
     <h1>Eliminar Artículo</h1>
-    <p>¿Está seguro de que deseas eliminar el articulo "{{ object }}"?</p>
+    <p>¿Está seguro de que deseas eliminar la Reseña "{{ object }}"?</p>
     <form class="col-md-5 m-auto" method="POST" role="form" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="row">

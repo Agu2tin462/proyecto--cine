@@ -2,7 +2,8 @@
 {% load static %}
 {% load colaborador_tags %}
 
-<title> {% block title %} Artículos {% endblock title %} </title>
+<title> {% block title %} Peliculas y Series
+     {% endblock title %} </title>
 {% block contenido %}
 
 <section class="container py-5">
@@ -15,7 +16,8 @@
     </ul>
     {% if user.is_superuser or request.user|has_group:"Colaborador"  %}
     <div class="col d-grid">
-            <br><a class="btn btn-success btn-lg" href="{% url 'apps.articulo:articulo_crear' %}">Crear un artículo</a><br>
+            <br><a class="btn btn-success btn-lg" href="{% url 'apps.articulo:articulo_crear' %}">Crear una Reseña de tu película o serie favorita
+            </a><br>
             <a class="btn btn-success btn-lg" href="{% url 'apps.articulo:crear_categoria' %}">Crear nueva categoría</a>
     </div>
     {% endif %}
