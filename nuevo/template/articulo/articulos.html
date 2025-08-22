@@ -2,93 +2,88 @@
 {% load static %}
 {% load colaborador_tags %}
 
-<title> {% block title %} Peliculas y Series
-     {% endblock title %} </title>
-{% block contenido %}
+{% block title %}Películas y Series{% endblock %}
 
+{% block contenido %}
 <section class="container py-5">
-    <h2>Ordenar por:</h2>
-    <ul>
-        <a class="btn btn-success btn-lg" href="{% url 'apps.articulo:articulos' %}?orden=reciente">Más reciente</a>
-        <a class="btn btn-success btn-lg" href="{% url 'apps.articulo:articulos' %}?orden=antiguo">Más antiguo</a>
-        <a class="btn btn-success btn-lg" href="{% url 'apps.articulo:articulos' %}?orden=alfabetico">Orden alfabético</a>
-        <a class="btn btn-success btn-lg" href="{% url 'apps.articulo:categoria_lista' %}">Listar todas las categorias</a>
-    </ul>
-    {% if user.is_superuser or request.user|has_group:"Colaborador"  %}
-    <div class="col d-grid">
-            <br><a class="btn btn-success btn-lg" href="{% url 'apps.articulo:articulo_crear' %}">Crear una Reseña de tu película o serie favorita
-            </a><br>
-            <a class="btn btn-success btn-lg" href="{% url 'apps.articulo:crear_categoria' %}">Crear nueva categoría</a>
+
+    <!-- Filtros -->
+    <div class="mb-4">
+        <h2>Ordenar por:</h2>
+        <div class="btn-group mb-3" role="group">
+            <a class="btn btn-outline-primary btn-lg" href="{% url 'apps.articulo:articulos' %}?orden=reciente">Más reciente</a>
+            <a class="btn btn-outline-primary btn-lg" href="{% url 'apps.articulo:articulos' %}?orden=antiguo">Más antiguo</a>
+            <a class="btn btn-outline-primary btn-lg" href="{% url 'apps.articulo:articulos' %}?orden=alfabetico">Orden alfabético</a>
+            <a class="btn btn-outline-primary btn-lg" href="{% url 'apps.articulo:categoria_lista' %}">Todas las categorías</a>
+        </div>
+    </div>
+
+    <!-- Botones de admin/colaborador -->
+    {% if user.is_superuser or request.user|has_group:"Colaborador" %}
+    <div class="mb-4 d-grid gap-2 d-md-block">
+        <a class="btn btn-outline-primary btn-lg me-2 mb-2" href="{% url 'apps.articulo:articulo_crear' %}">
+            Crear reseña
+        </a>
+        <a class="btn btn-outline-primary btn-lg mb-2" href="{% url 'apps.articulo:crear_categoria' %}">
+            Crear categoría
+        </a>
     </div>
     {% endif %}
-    <div class="row text-center pt-3">
+
+    <!-- Título general -->
+    <div class="row text-center pt-3 mb-4">
         <div class="col-lg-6 m-auto">
-            <h1 class="h1">Artículos</h1>
-            <p>
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
-            </p>
+            <h1 class="h1">Peliculas y Series</h1>
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
     </div>
+
+     <!-- Artículos -->
     <div class="row">
         {% for articulo in articulos %}
-        <div class="col-12 col-md-4 p-5 mt-3">
-          <h4 class="text-center mt-3 mb-3">{{ articulo.titulo | capfirst }}</h4>
-          <h6 class="text-center mt-6 mb-6">Fecha de Publicación: {{ articulo.fecha_publicacion }}</h6>
-          <div class="text-center mt-3 mb-3">
-            <a><img src="{{ articulo.imagen.url }}" class="rounded-circle img-fluid border" style="width: 150px; height: 150px;"></a>
-            <br>
-            <h6 class="text-center mt-1 mb-1">{{ articulo.resumen }}</h6>
-          </div>
-            <p class="text-center"><a class="btn btn-success" href="{% url 'apps.articulo:articulo_detalle' articulo.id %}">Ingresá</a></p>
+        <div class="col-12 col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                {% if articulo.imagen %}
+                <img src="{{ articulo.imagen.url }}" class="card-img-top img-fluid" alt="{{ articulo.titulo }}" style="object-fit: cover; height: 200px;">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center">{{ articulo.titulo|capfirst }}</h5>
+                    <p class="text-center text-muted mb-2">Fecha: {{ articulo.fecha_publicacion }}</p>
+                    <p class="card-text text-center mb-3">{{ articulo.resumen }}</p>
+                    <div class="mt-auto text-center">
+                        <a class="btn btn-outline-primary" href="{% url 'apps.articulo:articulo_detalle' articulo.id %}">Ingresá</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        {% empty %}  
-          <li>No hay articulos</li>
+        {% empty %}
+        <p>No hay artículos disponibles.</p>
         {% endfor %}
     </div>
 
+    <!-- Scripts para filtros -->
+    <script>
+        function updateUrl() {
+            const categoria = document.getElementById('categoria')?.value;
+            const orden = document.getElementById('orden')?.value;
+            const fecha = document.getElementById('fecha')?.value;
+            
+            let url = '/articulos/';
+            if (categoria) url += categoria + '/';
+            
+            const params = [];
+            if (orden) params.push('orden=' + orden);
+            if (fecha) params.push('fecha=' + fecha);
+            if (params.length > 0) url += '?' + params.join('&');
+            
+            window.location.href = url;
+        }
 
-    <script>
-      document.getElementById('categoria').addEventListener('change', function() {
-          var categoria = this.value;
-          if (categoria) {
-              window.location.href = '/articulos/' + categoria + '/';
-          } else {
-              window.location.href = '/articulos/';
-          }
-      });
+        ['categoria', 'orden', 'fecha'].forEach(id => {
+            const el = document.getElementById(id);
+            if(el) el.addEventListener('change', updateUrl);
+        });
     </script>
-    <script>
-      function updateUrl() {
-          var categoria = document.getElementById('categoria').value;
-          var orden = document.getElementById('orden').value;
-          var fecha = document.getElementById('fecha').value;
-          
-          var url = '/articulos/';
-          if (categoria) {
-              url += categoria + '/';
-          }
-          if (orden || fecha) {
-              url += '?';
-              if (orden) {
-                  url += 'orden=' + orden;
-                  if (fecha) {
-                      url += '&';
-                  }
-              }
-              if (fecha) {
-                  url += 'fecha=' + fecha;
-              }
-          }
-          
-          window.location.href = url;
-      }
-  
-      document.getElementById('categoria').addEventListener('change', updateUrl);
-      document.getElementById('orden').addEventListener('change', updateUrl);
-      document.getElementById('fecha').addEventListener('change', updateUrl);
-    </script>
+
 </section>
 {% endblock %}
-
-

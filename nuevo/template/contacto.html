@@ -1,74 +1,108 @@
+
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Contacto{% endblock %}
 
 {% block contenido %}
-
-<!-- Formulario + Información de contacto -->
 <div class="container py-5">
-    <div class="row py-5">
+    <h1 class="text-center mb-5 text-primary">
+        <i class="bi bi-envelope-fill me-2"></i>Contacto
+    </h1>
 
-        <!-- Mensajes de Django -->
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-success">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
+    <div class="row g-4">
 
-        <!-- Formulario -->
+         <!-- Formulario -->
         <div class="col-md-6">
-            <form method="POST" role="form">
-                {% csrf_token %}
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-4">
+                    <h3 class="text-primary text-center mb-4">
+                        <i class="bi bi-chat-dots-fill me-2"></i>Escríbenos
+                    </h3>
+                    <form method="POST" novalidate>
+                        {% csrf_token %}
 
-                <div class="mb-3">
-                    <label for="{{ form.nombre_apellido.id_for_label }}" class="form-label">Nombre y Apellido</label>
-                    {{ form.nombre_apellido }}
-                    {% if form.nombre_apellido.errors %}
-                        <div class="text-danger">{{ form.nombre_apellido.errors }}</div>
-                    {% endif %}
-                </div>
+                        <div class="mb-3">
+                            <label for="{{ form.nombre_apellido.id_for_label }}" class="form-label">
+                                <i class="bi bi-person-fill me-1"></i>Nombre y Apellido
+                            </label>
+                            {{ form.nombre_apellido }}
+                            {% if form.nombre_apellido.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.nombre_apellido.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
 
-                <div class="mb-3">
-                    <label for="{{ form.email.id_for_label }}" class="form-label">Correo electrónico</label>
-                    {{ form.email }}
-                    {% if form.email.errors %}
-                        <div class="text-danger">{{ form.email.errors }}</div>
-                    {% endif %}
-                </div>
+                        <div class="mb-3">
+                            <label for="{{ form.email.id_for_label }}" class="form-label">
+                                <i class="bi bi-envelope-at-fill me-1"></i>Correo electrónico
+                            </label>
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.email.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
 
-                <div class="mb-3">
-                    <label for="{{ form.asunto.id_for_label }}" class="form-label">Asunto</label>
-                    {{ form.asunto }}
-                    {% if form.asunto.errors %}
-                        <div class="text-danger">{{ form.asunto.errors }}</div>
-                    {% endif %}
-                </div>
+                        <div class="mb-3">
+                            <label for="{{ form.asunto.id_for_label }}" class="form-label">
+                                <i class="bi bi-pencil-fill me-1"></i>Asunto
+                            </label>
+                            {{ form.asunto }}
+                            {% if form.asunto.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.asunto.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
 
-                <div class="mb-3">
-                    <label for="{{ form.mensaje.id_for_label }}" class="form-label">Mensaje</label>
-                    {{ form.mensaje }}
-                    {% if form.mensaje.errors %}
-                        <div class="text-danger">{{ form.mensaje.errors }}</div>
-                    {% endif %}
-                </div>
+                        <div class="mb-3">
+                            <label for="{{ form.mensaje.id_for_label }}" class="form-label">
+                                <i class="bi bi-chat-left-text-fill me-1"></i>Mensaje
+                            </label>
+                            {{ form.mensaje }}
+                            {% if form.mensaje.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.mensaje.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
 
-                <div class="text-end mt-2">
-                    <button type="submit" class="btn btn-success btn-lg px-3">Enviar</button>
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-send-fill me-2"></i>Enviar mensaje
+                            </button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
-
         <!-- Información de contacto -->
         <div class="col-md-6">
-            <h5 class="mb-3">¿Dónde encontrarnos?</h5>
-            <p><strong>Email:</strong> contacto@algorithmaces.com</p>
-            <p><strong>Teléfono:</strong> +12345</p>
-            <p><strong>Ubicación:</strong> Resistencia, Chaco, Argentina</p>
+            <div class="card shadow-lg border-0 rounded-4 bg-light">
+                <div class="card-body p-4">
+                    <h3 class="text-primary text-center mb-4">
+                        <i class="bi bi-geo-alt-fill me-2"></i>¿Dónde encontrarnos?
+                    </h3>
+                    <ul class="list-group list-group-flush fs-5">
+                        <li class="list-group-item">
+                            <i class="bi bi-envelope-fill me-2 text-primary"></i>
+                            <strong>Email:</strong> contacto@algorithmaces.com
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-telephone-fill me-2 text-primary"></i>
+                            <strong>Teléfono:</strong> +12345
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-geo-fill me-2 text-primary"></i>
+                            <strong>Ubicación:</strong> Resistencia, Chaco, Argentina
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
     </div>
 </div>
-
 {% endblock %}
-
-
