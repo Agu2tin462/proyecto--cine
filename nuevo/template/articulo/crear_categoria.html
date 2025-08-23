@@ -9,10 +9,17 @@
         <form method="post">
         {% csrf_token %}
         {{ form | crispy }}
+<<<<<<< HEAD
         <input class="btn btn-outline-primary" type="submit" value="Agregar">
     </form>
     <div class="container-fluid" style="margin-top: 300px;">
         <a class="btn btn-outline-primary" 
+=======
+        <input class="btn btn-success" type="submit" value="Agregar">
+    </form>
+    <div class="container-fluid" style="margin-top: 300px;">
+        <a class="btn btn-success" 
+>>>>>>> 25bdb4c8a5ee3bbd8c2ce3b1657651e1be84f04e
         href="{% url 'apps.articulo:categoria_lista' %}">Listar todas las categorias</a>
     </div>
 </div>

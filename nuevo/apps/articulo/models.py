@@ -29,7 +29,11 @@ class Articulo(models.Model):
 
 class Image(models.Model):
     articulo = models.ForeignKey(Articulo, on_delete=models.CASCADE, related_name='images')
+<<<<<<< HEAD
     image = models.ImageField(null=True, blank=True, default='static/poat_default.jpg')
+=======
+    image = models.ImageField(null=True, blank=True, upload_to='articulo', default='articulo/post_default.png')
+>>>>>>> 25bdb4c8a5ee3bbd8c2ce3b1657651e1be84f04e
 
     def delete(self, using=None, keep_parents=False):
         self.image.delete()
