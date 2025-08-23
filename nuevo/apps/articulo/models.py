@@ -29,7 +29,7 @@ class Articulo(models.Model):
 
 class Image(models.Model):
     articulo = models.ForeignKey(Articulo, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(null=True, blank=True, default='static/assets/imgbase.jpg')
+    image = models.ImageField(null=True, blank=True, default='static/poat_default.jpg')
 
     def delete(self, using=None, keep_parents=False):
         self.image.delete()

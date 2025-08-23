@@ -44,11 +44,11 @@
                                 <!--Solo si es colaborador-->
                                 {% if user.is_superuser or request.user|has_group:"Colaborador"  %}
                                 <div class="col d-grid">
-                                    <a href="{% url 'apps.articulo:articulo_actualizar' pk=articulos.pk %}" class="btn btn-success btn-lg" value="eliminar">Editar articulo</a>
+                                    <a href="{% url 'apps.articulo:articulo_actualizar' pk=articulos.pk %}" class="btn btn-success btn-lg" value="eliminar">Editar Reseña</a>
                                 </div>
                                 <!--Solo si es colaborador-->
                                 <div class="col d-grid">
-                                        <a href="{% url 'apps.articulo:articulo_eliminar' pk=articulos.pk %}" class="btn btn-success btn-lg" value="eliminar">Eliminar articulo</a>
+                                        <a href="{% url 'apps.articulo:articulo_eliminar' pk=articulos.pk %}" class="btn btn-success btn-lg" value="eliminar">Eliminar Reseña</a>
                                 </div>  
                                 {% endif %}                                                           
                             </div>
@@ -67,7 +67,7 @@
         <div class="col-md-6 m-auto text-center">
             <h1 class="h1">Comentarios</h1>
             <p>
-                Aquí podrás ver los comentarios de este artículo, o podrás comentar (siempre y cuando estés registrado y logueado!)
+                Aquí podrás ver los comentarios de esta reseña, o podrás comentar (siempre y cuando estés registrado y logueado!)
             </p>
 
         <h1>{{ mensaje }}</h1>

@@ -69,7 +69,7 @@ class ArticuloCreateView(LoginRequiredMixin, CreateView):
     template_name = 'articulo/articulo_form.html'
 
     def get_success_url(self):
-            messages.success(self.request, '¡Artículo creado con éxito!')
+            messages.success(self.request, '¡Reseña creado con éxito!')
             return reverse_lazy('apps.articulo:articulos')
 
 
@@ -80,7 +80,7 @@ class ArticuloUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'articulo/articulo_form.html'
 
     def get_success_url(self):
-            messages.success(self.request, '¡Artículo modificado con éxito!')
+            messages.success(self.request, '¡Reseña modificado con éxito!')
             return reverse_lazy('apps.articulo:articulos')
 
 

@@ -13,9 +13,9 @@
         {% if editing %}
         <div class="row">
             <div class="col text-end mt-2">
-                <a class="btn btn-success btn-lg" href="{% url 'apps.articulo:crear_categoria' %}?next={% url 'apps.articulo:articulo_actualizar' pk=object.id %}">Crear nueva categoría</a>
+                <a class="btn btn-outline-primary" href="{% url 'apps.articulo:crear_categoria' %}?next={% url 'apps.articulo:articulo_actualizar' pk=object.id %}">Crear nueva categoría</a>
         {% else %}
-            <a class="btn btn-success btn-lg" href="{% url 'apps.articulo:crear_categoria' %}">Crear nueva categoría</a>
+            <a class="btn btn-outline-primary" href="{% url 'apps.articulo:crear_categoria' %}">Crear nueva categoría</a>
         {% endif %}
             </div>
         </div>
@@ -24,7 +24,7 @@
 
 <div class="container">
     <div class="row py-5">
-        <h1>{% if object.id %}Modificar{% else %}Crear{% endif %} Artículo</h1>
+        <h1>{% if object.id %}Modificar{% else %}Crear{% endif %} Reseña</h1>
         <form method="POST" enctype="multipart/form-data" id="articulo-form">
             {% csrf_token %}
             {{ form | crispy}}
