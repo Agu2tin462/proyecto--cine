@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-<<<<<<< HEAD
 <title>{% block title %} Inicio {% endblock title %}</title>
 
 
@@ -144,31 +143,6 @@
       </div>
     
     
-=======
-{% block contenido %}
-
-<h2 class="text-center my-4">Últimos artículos</h2>
-
-<div class="container position-relative" style="max-width: 1000px;">
-  <!-- Contenedor scrollable -->
-  <div class="d-flex overflow-auto px-2" id="cardsWrapper" style="gap:1rem; scroll-behavior:smooth;">
-    {% for articulo in articulos %}
-      <div class="card flex-shrink-0" style="width: 300px; min-height: 400px;">
-        {% if articulo.imagen %}
-          <img src="{{ articulo.imagen.url }}" class="card-img-top" alt="{{ articulo.titulo }}" style="height: 200px; object-fit: cover;">
-        {% else %}
-          <img src="{% static 'assets/img/banner_img_01.jpg' %}" class="card-img-top" alt="{{ articulo.titulo }}" style="height: 200px; object-fit: cover;">
-        {% endif %}
-        <div class="card-body d-flex flex-column justify-content-between">
-          <div>
-            <h5 class="card-title">{{ articulo.titulo }}</h5>
-            <p class="card-text">{{ articulo.resumen|truncatewords:15 }}</p>
-          </div>
-          <a href="{% url 'apps.articulo:articulo_detalle' id=articulo.id %}" class="btn btn-outline-dark mt-2">Leer más</a>
-        </div>
-      </div>
-    {% endfor %}
->>>>>>> 25bdb4c8a5ee3bbd8c2ce3b1657651e1be84f04e
   </div>
 
   <!-- Botones de control -->
@@ -183,13 +157,7 @@
     &#8250;
   </button>
 </div>
-<<<<<<< HEAD
        
 
 {% endblock %}
     
-=======
-
-{% endblock %}
-
->>>>>>> 25bdb4c8a5ee3bbd8c2ce3b1657651e1be84f04e

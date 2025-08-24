@@ -2,23 +2,14 @@
 {% load static %}
 {% load colaborador_tags %}
 
-<<<<<<< HEAD
 <title>{% block title %}Eliminación de Reseña{%endblock %}</title>
-=======
-<title>{% block title %}Eliminación de artículos{%endblock %}</title>
->>>>>>> 25bdb4c8a5ee3bbd8c2ce3b1657651e1be84f04e
 
 {% block contenido %}
 {% if user.is_superuser or request.user|has_group:"Colaborador"  %}
 <div class="container py-5">
     <div class="col-md-6 m-auto text-center">
-<<<<<<< HEAD
     <h1>Eliminar Reseña</h1>
     <p>¿Está seguro de que deseas eliminar la Reseña "{{ object }}"?</p>
-=======
-    <h1>Eliminar Artículo</h1>
-    <p>¿Está seguro de que deseas eliminar el articulo "{{ object }}"?</p>
->>>>>>> 25bdb4c8a5ee3bbd8c2ce3b1657651e1be84f04e
     <form class="col-md-5 m-auto" method="POST" role="form" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="row">

@@ -8,10 +8,6 @@ from django.views.generic.edit import CreateView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.contrib import messages
-<<<<<<< HEAD
-=======
-from django.views.generic import TemplateView
->>>>>>> 25bdb4c8a5ee3bbd8c2ce3b1657651e1be84f04e
 
 #Todos los artículos
 class ArticuloListView(ListView):
@@ -73,11 +69,7 @@ class ArticuloCreateView(LoginRequiredMixin, CreateView):
     template_name = 'articulo/articulo_form.html'
 
     def get_success_url(self):
-<<<<<<< HEAD
             messages.success(self.request, '¡Reseña creado con éxito!')
-=======
-            messages.success(self.request, '¡Artículo creado con éxito!')
->>>>>>> 25bdb4c8a5ee3bbd8c2ce3b1657651e1be84f04e
             return reverse_lazy('apps.articulo:articulos')
 
 
@@ -88,11 +80,7 @@ class ArticuloUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'articulo/articulo_form.html'
 
     def get_success_url(self):
-<<<<<<< HEAD
             messages.success(self.request, '¡Reseña modificado con éxito!')
-=======
-            messages.success(self.request, '¡Artículo modificado con éxito!')
->>>>>>> 25bdb4c8a5ee3bbd8c2ce3b1657651e1be84f04e
             return reverse_lazy('apps.articulo:articulos')
 
 

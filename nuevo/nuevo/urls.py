@@ -17,11 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 # from .views import index
-<<<<<<< HEAD
 from .views import IndexView, peliculaView, nosotrosView
-=======
-from .views import IndexView, nosotrosView
->>>>>>> 25bdb4c8a5ee3bbd8c2ce3b1657651e1be84f04e
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -30,10 +26,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),
-<<<<<<< HEAD
     path('pelicula/', peliculaView.as_view(), name='pelicula'),
-=======
->>>>>>> 25bdb4c8a5ee3bbd8c2ce3b1657651e1be84f04e
     path('nosotros/', nosotrosView.as_view(), name='nosotros'),
     path('', include('apps.articulo.urls')),
     path('', include('apps.contacto.urls')),
